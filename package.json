@@ -1,0 +1,19 @@
+{
+  "name": "jetruby-task",
+  "version": "0.0.1",
+  "description": "Test task for front-end developer vacancy",
+  "author": "Alex Maliniwskiy (ixus.van.axel@gmail.com)",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.3",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-debug": "^2.1.2",
+    "gulp-jade": "^1.1.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-watch": "^4.3.5",
+    "node-font-awesome": "^1.0.2",
+    "tiny-lr": "^0.2.1"
+  }
+}

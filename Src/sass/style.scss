@@ -1,0 +1,253 @@
+%centerflex{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+%boxstyle{
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform .5s;
+  width: 200px;
+  height: 180px;
+  border-radius: 7px;
+  padding: 20px;
+  @extend %centerflex;
+  flex-wrap: wrap;
+
+  align-items: baseline;
+}
+
+$browser-prefixes:webkit moz o ms;
+
+// Mixin to make centered flex block
+/// @author Aveletsky
+/// @param $direction - flew flow direction
+@mixin centerbox($direction){
+    @extend %centerflex;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    flex-direction: $direction;
+  }
+
+// Mixin to prefix a property
+/// @author Hugo Giraudel
+/// @param {String} $property - Property name
+/// @param {*} $value - Property value
+/// @param {List} $prefixes (()) - List of prefixes to print
+@mixin prefix($property, $value, $prefixes: ()) {
+    @each $prefix in $prefixes {
+      #{'-' + $prefix + '-' + $property}: $value;
+    }
+
+    // Output standard non-prefixed declaration
+    #{$property}: $value;
+  }
+
+// Mixin for adaptive media req
+/// @param $max - max size of display
+@mixin width($max){
+  @media (max-width: $max){
+    @content;
+  }
+}
+
+html {
+  box-sizing: border-box
+}
+
+*, *:before, *:after {
+  box-sizing: inherit
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: #343436;
+  min-height: 100%;
+  font-family: Helvetica, sans-serif;
+}
+
+.wrap {
+  position: relative;
+  height: 100%;
+  min-height: 500px;
+}
+
+.game {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items:center;
+  transform-style: preserve-3d;
+  perspective: 500px;
+  min-height: 100%;
+  height: 100%;
+}
+
+@keyframes matchAnim {
+  0% {
+    background: #bcffcc;
+  }
+  100% {
+    background: greenyellow;
+  }
+}
+
+.colored-block{
+  height: inherit;
+  width: inherit;
+}
+
+.card {
+  @extend %centerflex;
+  flex-grow: 1;
+  float: left;
+  width: 200px;
+  height: 180px;
+  display: block;
+  @include prefix(perspective, 1000px,$browser-prefixes);
+  position: relative;
+  cursor: pointer;
+  z-index: 50;
+  @include prefix(highlight-color, rgba(0,0,0,0),$browser-prefixes);
+  @include width(800px){
+    width: 25%;
+    height: 10.666%;
+  }
+  .inside {
+    width: 100%;
+    height: 100%;
+    display: block;
+    @include prefix(transform-style, preserve-3d,$browser-prefixes);
+    @include prefix(transition, .4s ease-in-out,$browser-prefixes);
+    @include prefix(backface-visibility,visible,$browser-prefixes);
+    background: white;
+
+  &.picked, &.matched {
+    transform: rotateY(180deg);
+    .back{
+      /* IE Hack. Halfway through the card flip, set visibility. Keep other browsers visible throughout the card flip.*/
+      animation: stayvisible 0.5s both;
+      -webkit-animation: stayvisible 0.5s both;
+      -moz-animation: stayvisible 0.5s both;
+      -o-animation: stayvisible 0.5s both;
+      -ms-animation: donothing 0.5s;
+      -ms-transition: visibility 0s linear 0.17s;
+      visibility: visible;
+    }
+    .cardFront{
+      /* IE Hack. Halfway through the card flip, set visibility. Keep other browsers visible throughout the card flip.*/
+      animation: stayvisible 0.5s both;
+      -webkit-animation: stayvisible 0.5s both;
+      -moz-animation: stayvisible 0.5s both;
+      -o-animation: stayvisible 0.5s both;
+      -ms-animation: donothing 0.5s;
+      -ms-transition: visibility 0s linear 0.17s;
+      visibility: hidden
+      };
+  }
+  &.matched {
+  animation: 1s matchAnim ease-in-out;
+  animation-delay: .4s;
+  }
+  .inside .back{
+  /* IE Hack. Halfway through the card flip, set visibility. Keep other browsers visible throughout the card flip.*/
+      animation: stayvisible 0.5s both;
+      -webkit-animation: stayvisible 0.5s both;
+      -moz-animation: stayvisible 0.5s both;
+      -o-animation: stayvisible 0.5s both;
+      -ms-animation: donothing 0.5s;
+      -ms-transition: visibility 0s linear 0.17s;
+      visibility: visible;
+    }
+}
+
+.front, .back {
+border: 1px solid black;
+@include prefix(backface-visibility,hidden,$browser-prefixes);
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+padding: 0;
+
+img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  max-height: 100%;
+  padding: 20px;
+}
+}
+.front {
+transform: rotateY(-180deg);
+@include width(800px){
+  padding: 5px;
+}
+}
+.back{
+@include width(800px){
+  padding: 10px;
+}
+}
+}
+
+.
+.modal-overlay {
+display: none;
+background: #C53A18;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+
+.modal {
+display: none;
+position: relative;
+width: 500px;
+height: 400px;
+max-height: 90%;
+max-width: 90%;
+min-height: 380px;
+margin: 0 auto;
+background: white;
+top: 50%;
+transform: translateY(-50%);
+padding: 30px 10px;
+.winner {
+font-size: 80px;
+text-align: center;
+font-family: 'Droid Sans';
+color: #4d4d4d;
+text-shadow: 0px 3px 0 black;
+@include width(480px){
+  font-size: 60px;
+}
+}
+
+.restart {
+font-family: "Droid Sans";
+margin: 30px auto;
+padding: 20px 30px;
+display: block;
+font-size: 30px;
+border: none;
+background: #4d4d4d;
+background: linear-gradient(#4d4d4d, #222);
+border: 1px solid #222;
+border-radius: 5px;
+color: white;
+text-shadow: 0px 1px 0 black;
+cursor: pointer;
+&:hover {
+background: linear-gradient(#222, black);
+}
+}
+
+}

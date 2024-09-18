@@ -1,0 +1,175 @@
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+header h1 {
+  color: #3B9954;
+  text-align: center; }
+
+body {
+  max-width: 1000px;
+  background: #f5f5f5;
+  font: 100% Helvetica, sans-serif;
+  font-size: 16px;
+  color: #FFFFFF;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  margin: 0 auto; }
+
+a {
+  color: #FFFFFF;
+  text-decoration: underline;
+  outline: 0; }
+  a:hover, a:focus {
+    color: inherit; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700; }
+
+p {
+  margin: 0 0 10px 0; }
+
+.card .content .cardFront, .card .content .cardBack, .tilezone, .row {
+  display: flex;
+  text-align: center;
+  justify-content: center; }
+
+.card .content .cardFront, .card .content .cardBack {
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform .5s;
+  width: 200px;
+  height: 180px;
+  border-radius: 7px;
+  padding: 20px;
+  flex-wrap: wrap;
+  align-items: baseline; }
+
+.tilezone {
+  min-height: 100vh;
+  flex-wrap: nowrap;
+  align-content: space-between;
+  flex-direction: column; }
+
+.row {
+  flex-wrap: nowrap;
+  align-content: space-between;
+  flex-direction: row; }
+
+.card {
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  -o-perspective: 1000px;
+  -ms-perspective: 1000px;
+  float: left;
+  width: 200px;
+  height: 180px;
+  margin: 10px; }
+  .card .content {
+    transition: 0.5s ease-out;
+    -webkit-transition: 0.5s ease-out;
+    -moz-transition: 0.5s ease-out;
+    -o-transition: 0.5s ease-out;
+    -ms-transition: 0.5s ease-out;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    /* content backface is visible so that static content still appears */
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    -moz-backface-visibility: visible;
+    -o-backface-visibility: visible;
+    -ms-backface-visibility: visible;
+    width: 100%;
+    height: 100%; }
+
+.applyflip .content {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg); }
+
+.card .content .cardFront {
+  transform: rotateY(0deg);
+  background: #3B9954; }
+  .card .content .cardFront > h2 {
+    font-size: 22px;
+    width: 100%;
+    margin: 0 0 10px 0; }
+  .card .content .cardFront > i.fa {
+    font-size: 3em;
+    align-self: flex-end; }
+  .card .content .cardFront > img {
+    height: 49px;
+    width: auto;
+    align-self: flex-end; }
+
+.card .content .cardBack {
+  transform: rotateY(180deg);
+  background: #3B99CA; }
+  .card .content .cardBack > a {
+    align-self: center;
+    width: 100%; }
+
+.card .content .cardFront, .card .content .cardBack {
+  /* Backface visibility works great for all but IE. As such, we mark the backface visible in IE and manage visibility ourselves */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  -ms-backface-visibility: visible;
+  position: absolute; }
+
+.card .content .cardFront {
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg); }
+
+.card.applyflip .content .cardFront {
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg); }
+
+.card .content .cardBack, .card.applyflip .content .cardBack {
+  transform: rotateY(-180deg);
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg); }
+
+@keyframes stayvisible {
+  from {
+    visibility: visible; }
+  to {
+    visibility: visible; } }
+
+@-webkit-keyframes stayvisible {
+  from {
+    visibility: visible; }
+  to {
+    visibility: visible; } }
+
+@-moz-keyframes stayvisible {
+  from {
+    visibility: visible; }
+  to {
+    visibility: visible; } }
+
+@-o-keyframes stayvisible {
+  from {
+    visibility: visible; }
+  to {
+    visibility: visible; } }
+
+@-ms-keyframes donothing {}

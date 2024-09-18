@@ -1,0 +1,545 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+header h1 {
+  color: #3B9954;
+  text-align: center;
+}
+
+body {
+  max-width: 1000px;
+  background: #f5f5f5;
+  font: 100% Helvetica, sans-serif;
+  font-size: 16px;
+  color: #FFFFFF;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  margin: 0 auto;
+}
+
+a {
+  color: #FFFFFF;
+  text-decoration: underline;
+  outline: 0;
+}
+
+a:hover,
+a:focus {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+p {
+  margin: 0 0 10px 0;
+}
+
+.card .content .cardFront,
+.card .content .cardBack,
+.tilezone,
+.row {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.card .content .cardFront,
+.card .content .cardBack {
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform .5s;
+  width: 200px;
+  height: 180px;
+  border-radius: 7px;
+  padding: 20px;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.tilezone {
+  min-height: 100vh;
+  flex-wrap: nowrap;
+  align-content: space-between;
+  flex-direction: column;
+}
+
+.row {
+  flex-wrap: nowrap;
+  align-content: space-between;
+  flex-direction: row;
+}
+
+.card {
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  -o-perspective: 1000px;
+  -ms-perspective: 1000px;
+  float: left;
+  width: 200px;
+  height: 180px;
+  margin: 10px;
+}
+
+.card .content {
+  transition: 0.5s ease-out;
+  -webkit-transition: 0.5s ease-out;
+  -moz-transition: 0.5s ease-out;
+  -o-transition: 0.5s ease-out;
+  -ms-transition: 0.5s ease-out;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  /* content backface is visible so that static content still appears */
+  backface-visibility: visible;
+  -webkit-backface-visibility: visible;
+  -moz-backface-visibility: visible;
+  -o-backface-visibility: visible;
+  -ms-backface-visibility: visible;
+  width: 100%;
+  height: 100%;
+}
+
+.applyflip .content {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+}
+
+.card .content .cardFront {
+  transform: rotateY(0deg);
+  background: #3B9954;
+}
+
+.card .content .cardFront > h2 {
+  font-size: 22px;
+  width: 100%;
+  margin: 0 0 10px 0;
+}
+
+.card .content .cardFront > i.fa {
+  font-size: 3em;
+  align-self: flex-end;
+}
+
+.card .content .cardFront > img {
+  height: 49px;
+  width: auto;
+  align-self: flex-end;
+}
+
+.card .content .cardBack {
+  transform: rotateY(180deg);
+  background: #3B99CA;
+}
+
+.card .content .cardBack > a {
+  align-self: center;
+  width: 100%;
+}
+
+.card .content .cardFront,
+.card .content .cardBack {
+  /* Backface visibility works great for all but IE. As such, we mark the backface visible in IE and manage visibility ourselves */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  -ms-backface-visibility: visible;
+  position: absolute;
+}
+
+.card .content .cardFront {
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+}
+
+.card.applyflip .content .cardFront {
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+}
+
+.card .content .cardBack,
+.card.applyflip .content .cardBack {
+  transform: rotateY(-180deg);
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+}
+
+@keyframes stayvisible {
+  from {
+    visibility: visible;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
+
+@-webkit-keyframes stayvisible {
+  from {
+    visibility: visible;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
+
+@-moz-keyframes stayvisible {
+  from {
+    visibility: visible;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
+
+@-o-keyframes stayvisible {
+  from {
+    visibility: visible;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
+
+@-ms-keyframes donothing {
+}
+@keyframes stayvisible {
+  from {
+    visibility: visible;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
+
+@-webkit-keyframes stayvisible {
+  from {
+    visibility: visible;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
+
+@-moz-keyframes stayvisible {
+  from {
+    visibility: visible;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
+
+@-o-keyframes stayvisible {
+  from {
+    visibility: visible;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
+
+@-ms-keyframes donothing {
+  0% {
+
+  }
+
+  100% {
+
+  }
+}
+.card {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #343436;
+  min-height: 100%;
+  font-family: Helvetica, sans-serif;
+}
+
+.wrap {
+  position: relative;
+  height: 100%;
+  min-height: 500px;
+}
+
+.game {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transform-style: preserve-3d;
+  perspective: 500px;
+  min-height: 100%;
+  height: 100%;
+}
+
+@keyframes matchAnim {
+  0% {
+    background: #bcffcc;
+  }
+
+  100% {
+    background: greenyellow;
+  }
+}
+
+.colored-block {
+  height: inherit;
+  width: inherit;
+}
+
+.card {
+  flex-grow: 1;
+  float: left;
+  width: 200px;
+  height: 180px;
+  display: block;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  -o-perspective: 1000px;
+  -ms-perspective: 1000px;
+  perspective: 1000px;
+  position: relative;
+  cursor: pointer;
+  z-index: 50;
+  -webkit-highlight-color: transparent;
+  -moz-highlight-color: transparent;
+  -o-highlight-color: transparent;
+  -ms-highlight-color: transparent;
+  highlight-color: transparent;
+}
+
+@media (max-width: 800px) {
+  .card {
+    width: 25%;
+    height: 10.666%;
+  }
+}
+
+.card .inside {
+  width: 100%;
+  height: 100%;
+  display: block;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: 0.4s ease-in-out;
+  -moz-transition: 0.4s ease-in-out;
+  -o-transition: 0.4s ease-in-out;
+  -ms-transition: 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
+  -webkit-backface-visibility: visible;
+  -moz-backface-visibility: visible;
+  -o-backface-visibility: visible;
+  -ms-backface-visibility: visible;
+  backface-visibility: visible;
+  background: white;
+}
+
+.card .inside.picked,
+.card .inside.matched {
+  transform: rotateY(180deg);
+}
+
+.card .inside.matched {
+  animation: 1s matchAnim ease-in-out;
+  animation-delay: .4s;
+}
+
+.card .front,
+.card .back {
+  border: 1px solid black;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.card .front img,
+.card .back img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  max-height: 100%;
+  padding: 20px;
+}
+
+.card .front {
+  transform: rotateY(-180deg);
+}
+
+@media (max-width: 800px) {
+  .card .front {
+    padding: 5px;
+  }
+}
+
+@media (max-width: 800px) {
+  .card .back {
+    padding: 10px;
+  }
+}
+
+.inside .front {
+  animation: stayvisible 0.5s both;
+  -webkit-animation: stayvisible 0.5s both;
+  -moz-animation: stayvisible 0.5s both;
+  -o-animation: stayvisible 0.5s both;
+  -ms-animation: donothing 0.5s;
+  -ms-transition: visibility 0s linear 0.17s;
+  visibility: visible;
+}
+
+.picked .inside .back {
+  animation: stayvisible 0.5s both;
+  -webkit-animation: stayvisible 0.5s both;
+  -moz-animation: stayvisible 0.5s both;
+  -o-animation: stayvisible 0.5s both;
+  -ms-animation: donothing 0.5s;
+  -ms-transition: visibility 0s linear 0.17s;
+  visibility: visible;
+}
+
+.picked .inside .front {
+  animation: stayvisible 0.5s both;
+  -webkit-animation: stayvisible 0.5s both;
+  -moz-animation: stayvisible 0.5s both;
+  -o-animation: stayvisible 0.5s both;
+  -ms-animation: donothing 0.5s;
+  -ms-transition: visibility 0s linear 0.17s;
+  visibility: hidden;
+}
+
+.inside .back {
+  /* IE Hack. Halfway through the card flip, set visibility. Keep other browsers visible throughout the card flip.*/
+  animation: stayvisible 0.5s both;
+  -webkit-animation: stayvisible 0.5s both;
+  -moz-animation: stayvisible 0.5s both;
+  -o-animation: stayvisible 0.5s both;
+  -ms-animation: donothing 0.5s;
+  -ms-transition: visibility 0s linear 0.17s;
+  visibility: hidden;
+}
+
+.modal-overlay {
+  display: none;
+  background: #C53A18;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal {
+  display: none;
+  position: relative;
+  width: 500px;
+  height: 400px;
+  max-height: 90%;
+  max-width: 90%;
+  min-height: 380px;
+  margin: 0 auto;
+  background: white;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 30px 10px;
+}
+
+.modal .winner {
+  font-size: 80px;
+  text-align: center;
+  font-family: 'Droid Sans';
+  color: #4d4d4d;
+  text-shadow: 0px 3px 0 black;
+}
+
+@media (max-width: 480px) {
+  .modal .winner {
+    font-size: 60px;
+  }
+}
+
+.modal .restart {
+  font-family: "Droid Sans";
+  margin: 30px auto;
+  padding: 20px 30px;
+  display: block;
+  font-size: 30px;
+  border: none;
+  background: #4d4d4d;
+  background: linear-gradient(#4d4d4d, #222);
+  border: 1px solid #222;
+  border-radius: 5px;
+  color: white;
+  text-shadow: 0px 1px 0 black;
+  cursor: pointer;
+}
+
+.modal .restart:hover {
+  background: linear-gradient(#222, black);
+}
